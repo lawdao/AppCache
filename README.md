@@ -93,6 +93,10 @@ DiskLruCache用起来不难，但是如果不加以封装的话，你会遇到�
 		
 
 
+经过以上步骤，你的缓存将会保存到本地，如图：
+
+![](https://ws2.sinaimg.cn/large/006tKfTcgy1fm9lc63adhj30l00jetbj.jpg)
+
 journal为DiskLruCache缓存经典标识文件。
 
 
