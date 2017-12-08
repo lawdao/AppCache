@@ -36,35 +36,34 @@ DiskLruCache用起来不难，但是如果不加以封装的话，你会遇到�
 
 1. 保存java对象
 
-	
-	String cachePath = getCacheDir(this);
+		String cachePath = getCacheDir(this);
 
-	User user = new User();
-	 user.name = "fussen";
-	 user.age = "100";
+		User user = new User();
+		 user.name = "fussen";
+		 user.age = "100";
 
-	Cache.with(this)
-	     .setPath(cachePath)
-	     .saveCache("key", user);
+		Cache.with(this)
+		     .setPath(cachePath)
+		     .saveCache("key", user);
 
 
 2. 保存List集合数据
 
-	List<String> mData = new ArrayList<>();
+		List<String> mData = new ArrayList<>();
 
-	String cachePath = getCacheDir(this);
+		String cachePath = getCacheDir(this);
 
-	Cache.with(this)
-	     .setPath(cachePath))
-	     .saveCache("key", mData);
+		Cache.with(this)
+		     .setPath(cachePath))
+		     .saveCache("key", mData);
 
 3. 保存图片
 
-	String imageUrl = "http://img.my.csdn.net/uploads/201407/26/1406383059_2237.jpg";
-	tring cachePath = getCacheDir(this);
-	Cache.with(this)
-			 .setPath(cachePath)
-			 .saveImage(imageUrl);
+		String imageUrl = "http://img.my.csdn.net/uploads/201407/26/1406383059_2237.jpg";
+		tring cachePath = getCacheDir(this);
+		Cache.with(this)
+				 .setPath(cachePath)
+				 .saveImage(imageUrl);
 
 
 ## 2.读取缓存
@@ -90,8 +89,15 @@ DiskLruCache用起来不难，但是如果不加以封装的话，你会遇到�
 		Bitmap cacheBitmap = Cache.with(this)
 				          .setPath(cachePath)
 				          .getImageCache(imageUrl);
-
     		imageView.setImageBitmap(cacheBitmap);
+		
+
+
+经过以上步骤，你的缓存将会保存到本地，如图：
+
+![AppCode](https://ws4.sinaimg.cn/large/006tKfTcgy1fm9ez422bnj30u01hctby.jpg)
+
+![AppCode](https://ws2.sinaimg.cn/large/006tKfTcgy1fm9ez198iwj30u01hc40t.jpg)
 
 journal为DiskLruCache缓存经典标识文件。
 
