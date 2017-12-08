@@ -95,9 +95,9 @@ DiskLruCache用起来不难，但是如果不加以封装的话，你会遇到�
 
 经过以上步骤，你的缓存将会保存到本地，如图：
 
-![AppCode](https://ws4.sinaimg.cn/large/006tKfTcgy1fm9ez422bnj30u01hctby.jpg)
+![AppCode](https://ws4.sinaimg.cn/large/006tKfTcgy1fm9ez422bnj30u01hctby.jpg =150x200)
 
-![AppCode](https://ws2.sinaimg.cn/large/006tKfTcgy1fm9ez198iwj30u01hc40t.jpg)
+![AppCode](https://ws2.sinaimg.cn/large/006tKfTcgy1fm9ez198iwj30u01hc40t.jpg =150x200)
 
 journal为DiskLruCache缓存经典标识文件。
 
@@ -113,11 +113,9 @@ journal为DiskLruCache缓存经典标识文件。
 # 依赖
 
 
- dependencies  {
- 
-         compile 'cc.fussen:cachelibrary:1.0.0'
-         ...         
-   }
+	 dependencies  {
+		 compile 'cc.fussen:cachelibrary:1.0.0'
+	   }
 
 
 # 最后说明
