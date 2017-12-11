@@ -84,8 +84,8 @@ public class CacheManager {
     /**
      * set cache path
      *
-     * @param path
-     * @return
+     * @param path path
+     * @return CacheManager
      */
     public CacheManager setPath(String path) {
         this.path = path;
@@ -99,8 +99,9 @@ public class CacheManager {
     /**
      * save cache
      *
-     * @param key
-     * @param object
+     * @param key key
+     * @param object object
+     * @return is
      */
     public boolean saveCache(String key, Object object) {
 
@@ -132,7 +133,7 @@ public class CacheManager {
     /**
      * save image cache
      *
-     * @param imageUrl
+     * @param imageUrl imageUrl
      */
     public void saveImage(String imageUrl) {
 
@@ -149,10 +150,10 @@ public class CacheManager {
     /**
      * read cache
      *
-     * @param key
-     * @param cls
-     * @param <T>
-     * @return
+     * @param key key
+     * @param cls cls
+     * @param <T> object
+     * @return object
      */
     public <T> T getCache(String key, Class<T> cls) {
 
@@ -176,8 +177,8 @@ public class CacheManager {
     /**
      * get image cache by image url
      *
-     * @param imageUrl
-     * @return
+     * @param imageUrl imageUrl
+     * @return Bitmap
      */
     public Bitmap getImageCache(String imageUrl) {
         try {
@@ -196,9 +197,10 @@ public class CacheManager {
 
     /**
      * read list cache
-     *
-     * @param key
-     * @return
+     * @param key key
+     * @param cls cls
+     * @param <T> t
+     * @return object
      */
     public <T> List<T> getCacheList(String key, Class<T> cls) {
 
@@ -243,8 +245,8 @@ public class CacheManager {
     /**
      * delete cache by key
      *
-     * @param key
-     * @return
+     * @param key key
+     * @return is
      */
     public boolean remove(String key) {
         if (mDiskLruCache == null) {
@@ -343,9 +345,9 @@ public class CacheManager {
     /**
      * url to diskStream
      *
-     * @param imageUrl
-     * @param outputStream
-     * @return
+     * @param imageUrl imageUrl
+     * @param outputStream outputStream
+     * @return is
      */
     private boolean writeUrlToStream(String imageUrl, OutputStream outputStream) {
         HttpURLConnection urlConnection = null;
@@ -422,8 +424,8 @@ public class CacheManager {
     /**
      * get key
      *
-     * @param key :key
-     * @return
+     * @param key :key key
+     * @return String
      */
     private String getKey(String key) {
 

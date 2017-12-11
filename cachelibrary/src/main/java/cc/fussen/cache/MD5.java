@@ -12,8 +12,8 @@ public class MD5 {
 
     /**
      * 将key MD5编码
-     * @param key
-     * @return
+     * @param key key
+     * @return String
      */
     public static String encodeKey(String key) {
         String cacheKey;
