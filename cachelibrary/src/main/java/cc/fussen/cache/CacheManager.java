@@ -16,8 +16,10 @@ import java.io.OutputStream;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Map;
 import java.util.Set;
 
 import static cc.fussen.cache.Util.getAppVersion;
@@ -42,6 +44,8 @@ public class CacheManager {
 
     private Set<SaveImageTask> taskCollection;
 
+    private static final Map<String, DiskLruCache> cacheDiskLru = new HashMap<>();
+
 
     public CacheManager(Context context) {
         this.context = context;
@@ -52,7 +56,6 @@ public class CacheManager {
         }
         initCache(context);
     }
-
 
 
     private void initCache(Context context) {
@@ -66,11 +69,13 @@ public class CacheManager {
 
             if (mDiskLruCache == null || (mDiskLruCache != null && !mDiskLruCache.getDirectory().getPath().toString().equals(path))) {
 
-                if (mDiskLruCache != null) {
-                    mDiskLruCache.close();
+                if (cacheDiskLru.containsKey(path)) {
+                    mDiskLruCache = cacheDiskLru.get(path);
+                    return;
                 }
-                mDiskLruCache = DiskLruCache.open(cacheDir, getAppVersion(context), 1, maxSize * 1024 * 1024);
 
+                mDiskLruCache = DiskLruCache.open(cacheDir, getAppVersion(context), 1, maxSize * 1024 * 1024);
+                cacheDiskLru.put(path, mDiskLruCache);
                 System.out.println("......create DiskLruCache......");
             }
 
@@ -78,7 +83,6 @@ public class CacheManager {
             e.printStackTrace();
         }
     }
-
 
 
     /**
@@ -94,12 +98,10 @@ public class CacheManager {
     }
 
 
-
-
     /**
      * save cache
      *
-     * @param key key
+     * @param key    key
      * @param object object
      * @return is
      */
@@ -197,6 +199,7 @@ public class CacheManager {
 
     /**
      * read list cache
+     *
      * @param key key
      * @param cls cls
      * @param <T> t
@@ -235,7 +238,13 @@ public class CacheManager {
                 }
                 taskCollection.clear();
             }
-            mDiskLruCache.close();
+
+            for (DiskLruCache disLru : cacheDiskLru.values()) {
+                disLru.close();
+            }
+
+            cacheDiskLru.clear();
+
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -345,7 +354,7 @@ public class CacheManager {
     /**
      * url to diskStream
      *
-     * @param imageUrl imageUrl
+     * @param imageUrl     imageUrl
      * @param outputStream outputStream
      * @return is
      */
