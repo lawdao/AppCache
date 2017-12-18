@@ -46,7 +46,10 @@ public class CacheManager {
 
     public CacheManager(Context context) {
         this.context = context;
-        path = getCacheDir(context);
+
+        if (path==null){
+            path = getCacheDir(context);
+        }
 
         if (taskCollection == null) {
             taskCollection = new HashSet<>();
@@ -90,6 +93,7 @@ public class CacheManager {
      * @return CacheManager
      */
     public CacheManager setPath(String path) {
+
         this.path = path;
         initCache(context);
         return this;

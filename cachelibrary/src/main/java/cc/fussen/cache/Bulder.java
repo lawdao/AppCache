@@ -28,4 +28,9 @@ public class Bulder {
 
         return manager;
     }
+
+
+    public CacheManager getManager() {
+        return manager;
+    }
 }

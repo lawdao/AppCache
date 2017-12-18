@@ -16,5 +16,18 @@ public class Cache {
         return bulder.get(context);
     }
 
+    /**
+     * close cache
+     */
+    public static void closeCache() {
+        Bulder bulder = Bulder.get();
+
+        CacheManager manager = bulder.getManager();
+        if (manager == null) {
+            return;
+        }
+        manager.closeCache();
+    }
+
 
 }
