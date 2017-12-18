@@ -112,7 +112,7 @@ journal为DiskLruCache缓存经典标识文件。
 
 
 	 dependencies  {
-		 compile 'cc.fussen:cachelibrary:1.0.1'
+		 compile 'cc.fussen:cachelibrary:1.0.2'
 	   }
 
 
