@@ -1,6 +1,8 @@
 # AppCache
 Android app DiskLruCache缓存封装
 
+**1.5.0的版本是有史以来最大的更新，一个字，就是简单易用！！！**
+
 # 介绍
 Android 应用缓存很常见，大多数应用都在使用DiskLruCache缓存技术，也有很多人介绍过DiskLruCache，一次我在这里就不介绍了。
 
@@ -43,8 +45,8 @@ DiskLruCache用起来不难，但是如果不加以封装的话，你会遇到�
 		 user.age = "100";
 
 		Cache.with(this)
-		     .setPath(cachePath)
-		     .saveCache("key", user);
+		     .path(cachePath)
+		     .saveCache("key1", user);
 
 
 2. 保存List集合数据
@@ -54,15 +56,15 @@ DiskLruCache用起来不难，但是如果不加以封装的话，你会遇到�
 		String cachePath = getCacheDir(this);
 
 		Cache.with(this)
-		     .setPath(cachePath))
-		     .saveCache("key", mData);
+		     .path(cachePath))
+		     .saveCache("key2", mData);
 
 3. 保存图片
 
 		String imageUrl = "http://img.my.csdn.net/uploads/201407/26/1406383059_2237.jpg";
 		tring cachePath = getCacheDir(this);
 		Cache.with(this)
-		     .setPath(cachePath)
+		     .path(cachePath)
 		     .saveImage(imageUrl);
 
 
@@ -72,23 +74,23 @@ DiskLruCache用起来不难，但是如果不加以封装的话，你会遇到�
 
 		String cachePath = getCacheDir(this);
 		User user = Cache.with(this)
-		                 .setPath(cachePath)
-		                 .getCache("key", User.class);
+		                 .path(cachePath)
+		                 .getCache("key1", User.class);
 
 2. 读取List集合数据
 
 		String cachePath = getCacheDir(this);
 		List<String> cacheList = Cache.with(this)
-					      .setPath(cachePath)
-					      .getCacheList("key", String.class);
+					                  .path(cachePath)
+					                  .getCacheList("key2", String.class);
 
 3. 读取图片缓存
 
 		String cachePath = getCacheDir(this);
 		
 		Bitmap cacheBitmap = Cache.with(this)
-				          .setPath(cachePath)
-				          .getImageCache(imageUrl);
+				                  .path(cachePath)
+				                  .getImageCache(imageUrl);
     		imageView.setImageBitmap(cacheBitmap);
 		
 
@@ -112,7 +114,7 @@ journal为DiskLruCache缓存经典标识文件。
 
 
 	 dependencies  {
-		 compile 'cc.fussen:cachelibrary:1.0.2'
+		 compile 'cc.fussen:cachelibrary:1.5.0'
 	   }
 
 
