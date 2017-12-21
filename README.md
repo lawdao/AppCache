@@ -81,16 +81,16 @@ DiskLruCache用起来不难，但是如果不加以封装的话，你会遇到�
 
 		String cachePath = getCacheDir(this);
 		List<String> cacheList = Cache.with(this)
-					                  .path(cachePath)
-					                  .getCacheList("key2", String.class);
+					      .path(cachePath)
+					      .getCacheList("key2", String.class);
 
 3. 读取图片缓存
 
 		String cachePath = getCacheDir(this);
 		
 		Bitmap cacheBitmap = Cache.with(this)
-				                  .path(cachePath)
-				                  .getImageCache(imageUrl);
+				          .path(cachePath)
+				          .getImageCache(imageUrl);
     		imageView.setImageBitmap(cacheBitmap);
 		
 
