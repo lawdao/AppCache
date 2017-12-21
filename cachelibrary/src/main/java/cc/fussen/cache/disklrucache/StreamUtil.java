@@ -1,4 +1,4 @@
-package cc.fussen.cache;
+package cc.fussen.cache.disklrucache;
 
 import java.io.BufferedInputStream;
 import java.io.BufferedOutputStream;
@@ -23,21 +23,21 @@ public class StreamUtil {
      *
      * @param inputStream inputStream
      * @param cls cls
-     * @param <T> T
-     * @return T
+     * @param <D> T
+     * @return D
      */
-    public static  <T> List<T> readListStream(InputStream inputStream, Class<T> cls) {
+    public static  <D> List<D> readListStream(InputStream inputStream, Class<D> cls) {
 
         System.out.println("...... className : " + cls.getSimpleName() + " ......");
 
-        List<T> resultList = new ArrayList<>();
+        List<D> resultList = new ArrayList<>();
         ObjectInputStream ois = null;
 
         try {
             ois = new ObjectInputStream(inputStream);
-            ArrayList<T> list_ext = (ArrayList<T>) ois.readObject();
+            ArrayList<D> list_ext = (ArrayList<D>) ois.readObject();
 
-            for (T obj : list_ext) {
+            for (D obj : list_ext) {
                 if (obj != null) {
                     resultList.add(obj);
                 }
@@ -60,14 +60,14 @@ public class StreamUtil {
 
 
 
-    public static <T> T readStream(InputStream inputStream, Class<T> cls) {
+    public static <D> D readStream(InputStream inputStream, Class<D> cls) {
 
         System.out.println("...... className : " + cls.getSimpleName() + " ......");
 
         ObjectInputStream ois = null;
         try {
             ois = new ObjectInputStream(inputStream);
-            T object = (T) ois.readObject();
+            D object = (D) ois.readObject();
             return object;
         } catch (Exception e) {
             e.printStackTrace();

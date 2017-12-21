@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package cc.fussen.cache;
+package cc.fussen.cache.disklrucache;
 
 import java.io.BufferedWriter;
 import java.io.Closeable;

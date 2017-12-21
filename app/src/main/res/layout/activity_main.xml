@@ -64,6 +64,13 @@
         android:layout_below="@+id/btn_save"
         android:text="读取缓存" />
 
+    <Button
+        android:id="@+id/delete"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/btn_read"
+        android:text="删除缓存" />
+
 
     <ListView
         android:id="@+id/listview"

@@ -24,6 +24,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     private Button save;
     private Button read;
+    private Button delete;
     private TextView name;
     private TextView age;
     private ListView listView;
@@ -44,6 +45,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         save = (Button) findViewById(R.id.btn_save);
         read = (Button) findViewById(R.id.btn_read);
+        delete = (Button) findViewById(R.id.delete);
 
         name = (TextView) findViewById(R.id.tv_name);
         age = (TextView) findViewById(R.id.tv_age);
@@ -54,6 +56,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         save.setOnClickListener(this);
         read.setOnClickListener(this);
+        delete.setOnClickListener(this);
 
 
         adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, cacheData);
@@ -86,15 +89,15 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
 
             Cache.with(this)
-                    .setPath(getCacheDir(this))
-                    .saveCache("user", user);
+                    .path(getCacheDir(this))
+                    .saveCache("user1", user);
 
             Cache.with(this)
-                    .setPath(getCacheDir(this))
+                    .path(getCacheDir(this))
                     .saveCache("user2", mData);
 
             Cache.with(MainActivity.this)
-                    .setPath(imagePath)
+                    .path(imagePath)
                     .saveImage(imageUrl);
 
             Toast.makeText(this, "保存成功", Toast.LENGTH_SHORT).show();
@@ -102,17 +105,20 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         } else if (view == read) {
 
             getCacheData();
+        } else if (view == delete) {
+            deleteCache();
         }
 
     }
+
 
     private void getCacheData() {
 
 
         //////////////////////////////
         User user = Cache.with(this)
-                .setPath(getCacheDir(this))
-                .getCache("user", User.class);
+                .path(getCacheDir(this))
+                .getCache("user1", User.class);
 
         if (user == null) {
             Toast.makeText(this, "暂无缓存", Toast.LENGTH_SHORT).show();
@@ -126,7 +132,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         ////////////////////////////////
 
         List<String> cacheList = Cache.with(this)
-                .setPath(getCacheDir(this))
+                .path(getCacheDir(this))
                 .getCacheList("user2", String.class);
 
         cacheData.clear();
@@ -138,13 +144,31 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
 
         Bitmap cacheBitmap = Cache.with(this)
-                .setPath(imagePath)
+                .path(imagePath)
                 .getImageCache(imageUrl);
 
         imageView.setImageBitmap(cacheBitmap);
 
 
     }
+
+
+    private void deleteCache() {
+
+        Cache.with(this)
+                .path(getCacheDir(this))
+                .remove("user1");
+
+
+        Cache.with(this)
+                .path(getCacheDir(this))
+                .remove("user2");
+
+        Cache.with(this)
+                .path(imagePath)
+                .remove(imageUrl);
+    }
+
 
     public String getCacheDir(Context context) {
         String cachePath;
@@ -157,10 +181,4 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         return cachePath;
     }
 
-
-    @Override
-    protected void onDestroy() {
-        Cache.closeCache();
-        super.onDestroy();
-    }
 }
