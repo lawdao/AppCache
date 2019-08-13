@@ -1,3 +1,8 @@
+#通知：
+
+此工具已经不再维护，遇到问题需自行解决哦。作者现在已经不写Android 了，写java以及做别的事情了  没有时间维护了，实属抱歉哈。
+
+
 # AppCache
 Android app DiskLruCache缓存封装
 
