@@ -123,10 +123,3 @@ journal为DiskLruCache缓存经典标识文件。
 	   }
 
 
-# 最后说明
-
-1. 该工具的封装思想来自于Glide
-2. 如果遇到什么问题，可以直接提issue
-3. 扫描下面二维码即可关注AppCode
-
-![AppCode](http://upload-images.jianshu.io/upload_images/3267943-35cf55f437d712a9.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
